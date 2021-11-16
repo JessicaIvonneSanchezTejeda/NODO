@@ -1,0 +1,54 @@
+/**
+ *
+ * @author JessicaIvonne
+ */
+import java.util.Scanner;
+public class listanodos {
+    static class Nodo{
+        String Nombre;
+        Nodo sig;
+    }
+    public static void mostrar(String name, Nodo next){
+        System.out.println(name+" ");
+        while(next != null){
+            System.out.print(next.Nombre + " ");
+            next = next.sig;
+        }
+    }
+    public static void main(String[] args) {
+        // TODO code application logic here
+        int opt=0;
+        Nodo inicio = null;
+        Scanner sc= new Scanner(System.in);
+        do{
+        System.out.println("\n1.- Agregar Nodos"
+                + "\n2.- Mostrar Nodos"
+                + "\n3.-Salir");
+        
+        switch(opt=sc.nextInt()){
+         //se crea una variable llamada "inicio" de tipo Nodo, sus valores son nulos, no se han inicializado
+        case 1:
+        inicio = new Nodo(); //asisgnamos a la variable inicio los atributos de la clase Nodo(), estos serian "nombre" y "sig"
+        inicio.Nombre= "A"; //en el campo "nombre" asignamos la informacion "A" o lo que desee agregar el usuario.
+        inicio.sig=null;  //el campo "sig" al ser el primer nodo el valor sera null
+       
+        Nodo temp; // este dato siempre se crea cuando es el caso 2 o diferente al caso 1
+        temp = new Nodo(); //asisgnamos a la variable temp los atributos de la clase Nodo(), estos serian "nombre" y "sig"
+        temp.Nombre="B";//en el campo "nombre" asignamos la informacion "A" o lo que desee agregar el usuario.
+        temp.sig=inicio;//el campo "sig" al ser el segundo o nodo N el valor de "sig", siempre apuntara a "inicio"
+        inicio=temp; // el nodo inicio siempre apunt a temp, cuando se agrega un nodo atras en la lista.
+        //mostrar("\ncaso 2", inicio)   
+        System.out.println("Se agregaron los nodos");
+        break;
+        
+        case 2:
+        if(inicio!=null){
+            mostrar(" ",inicio);
+        }else{
+            System.out.println("Lista vacia:");
+        }
+        break;
+    }
+} while(opt!=3);
+}
+}
