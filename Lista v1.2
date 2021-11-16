@@ -1,0 +1,83 @@
+public class Nodo {
+    public String cont;//datos que contiene el nodo 
+    public Nodo sig; 
+   
+    public Nodo(String c, Nodo s){// se asigna lo que contendran los nodos 
+        cont=c;
+        sig=s;
+    } 
+}
+
+public class Lista {
+    public Nodo inicio,fin; 
+    public Lista(){
+        inicio=null;// los dos componenetes del nodo se declaran como nulos ya que apenas se les dara valor 
+        fin=null;
+    }
+    public void agregarnodo(String nom){// manda a llamar la funcion agregar
+        inicio=new Nodo(nom, inicio);// crea el nodo con el nombre dado por teclado 
+        if(fin==null){
+            fin=inicio; // establece las posisciones nuevamente del nodo 
+        }
+    }
+    public void mostrar(){ // manda a llamar la funcion mostrar 
+        Nodo avanzar=inicio; // define la variable avanzar en el inicio para ir avanzando a  las demas  
+        System.out.println();
+        if (avanzar!=null){ //si la variable avanzar es diferente de null va mostrando los nodos
+        while (avanzar!=null){
+            System.out.print("["+avanzar.cont+"]");
+            avanzar=avanzar.sig;       
+        }
+        }
+        else{
+            System.out.println("Lista de nodos vacia "); // si la variable avanzar el igual a nula  la lista esta vacia  
+        }
+    }
+    public void eliminarnodo(){ //manda a llamar la funcion eliminar
+        String el= inicio.cont; 
+        if(inicio==fin){// si el inicio y el fin del nodo son iguales eliminara su contenido del nodo
+            inicio=null;
+            fin=null;   
+        }
+        else {
+            inicio=inicio.sig;// avanza a los demas nodos 
+        }
+    }   
+}
+
+import java.util.Scanner;
+/**
+ *
+ * @author JessicaIvonne 
+ */
+public class listanodos {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Lista enlace = new Lista(); //enlace para mandar a llamar las funciones de la clase lista
+        int opt = 0; 
+        String nom = null; // declara la variable tipo cadena para el nombre de los nodos 
+       
+        do {
+            System.out.println("\n1 - Agregar  \n"
+                    + "2 - Mostrar nodos \n"
+                    + "3 - Eliminar nodo\n"
+                    + "4 - Salir ");
+            switch(opt = sc.nextInt()) {
+                case 1:
+                    System.out.println("Asigne el nombre del nodo");//  solicita el nombre del nodo al usuario
+                    nom = sc.next(); //guarda los datos introducidos por teclado en la variable nom
+                    enlace.agregarnodo(nom); // llama la funcion "agregar"
+                    break;
+
+                case 2:
+                    enlace.mostrar(); // llama la funcion mostrar 
+                    break;
+                case 3:
+                    System.out.println("Nodo eliminado");
+                    enlace.eliminarnodo();//  manda a llamar la funcion eliminar nodo 
+                    break;
+            }
+    }while (opt != 4);   
+}
+}
